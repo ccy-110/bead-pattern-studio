@@ -1,0 +1,12 @@
+# 统一换行符：仓库里存 LF，Windows 检出时按需转换。
+# 否则同一份文件会在不同机器上显示为"整个文件都改了"。
+* text=auto eol=lf
+
+# 二进制文件不要做换行转换，也不要尝试 diff 成文本
+*.ttf binary
+*.woff2 binary
+*.png binary
+*.jpg binary
+*.pdf binary
+*.db binary
+*.xlsx binary

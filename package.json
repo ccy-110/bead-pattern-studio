@@ -1,0 +1,34 @@
+{
+  "name": "bead-pattern-studio",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "拼豆图纸工坊 —— 上传图片，自动生成拼豆图纸（网格图 / 色号统计 / 打印版导出）",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "server": "tsx server/index.ts",
+    "server:watch": "tsx watch server/index.ts",
+    "server:reset-password": "tsx server/reset-password.ts",
+    "typecheck": "vue-tsc --noEmit && tsc -p server/tsconfig.json --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "vue": "^3.5.43"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.1",
+    "@vitejs/plugin-vue": "^6.0.9",
+    "@vue/test-utils": "^2.5.1",
+    "fontkit": "^2.0.4",
+    "happy-dom": "^20.14.5",
+    "subset-font": "^2.9.0",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3",
+    "vite": "^8.3.0",
+    "vitest": "^5.0.1",
+    "vue-tsc": "^3.3.11"
+  }
+}

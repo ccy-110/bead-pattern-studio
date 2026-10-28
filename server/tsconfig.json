@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    // 用 Bundler 解析：后端要复用 src/ 下的纯逻辑，而那些文件是不带扩展名导入的，
+    // NodeNext 会要求写 `./x.ts`。运行时由 tsx 负责解析。
+    "moduleResolution": "Bundler",
+    "lib": ["ES2023"],
+    "types": ["node"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "verbatimModuleSyntax": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["./**/*.ts"]
+}

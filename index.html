@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>拼豆图纸工坊 · 图片一键转拼豆图纸</title>
+    <meta
+      name="description"
+      content="上传图片，自动生成拼豆图纸：网格图、色号标注、豆子用量统计、打印版导出。支持 2.6mm / 5mm / 10mm 规格，内置 MARD、Artkal、Hama、Perler、COCO 等 9 张真实厂商色卡。"
+    />
+  </head>
+  <body>
+    <div id="app"></div>
+    <!--
+      启动失败时不要让用户对着白屏猜。
+      这段脚本必须在入口模块之前执行，且**不能**用 innerHTML 拼错误信息
+      （错误消息里可能带用户可控内容，会变成 XSS）。
+    -->
+    <script>
+      ;(function () {
+        var shown = false
+
+        function show(title, detail) {
+          var app = document.getElementById('app')
+          // 已经渲染出内容就不再打扰（挂载后的偶发错误不该覆盖整个界面）
+          if (shown || !app || app.childElementCount > 0) return
+          shown = true
+
+          var box = document.createElement('div')
+          box.setAttribute(
+            'style',
+            'max-width:640px;margin:80px auto;padding:20px 24px;font:14px/1.7 system-ui,-apple-system,"Segoe UI","Microsoft YaHei",sans-serif;color:#343a40;border:1px solid #e3e6ea;border-radius:8px;background:#f8f9fa',
+          )
+
+          var h = document.createElement('div')
+          h.setAttribute('style', 'font-size:16px;font-weight:600;margin-bottom:8px')
+          h.textContent = title
+          box.appendChild(h)
+
+          if (detail) {
+            var p = document.createElement('div')
+            p.setAttribute('style', 'color:#868e96;word-break:break-word')
+            p.textContent = detail
+            box.appendChild(p)
+          }
+
+          var tip = document.createElement('div')
+          tip.setAttribute('style', 'margin-top:12px;color:#868e96')
+          tip.textContent = '可以按 Ctrl+Shift+R 强制刷新一次；如果仍然这样，请把上面这行文字发给开发者。'
+          box.appendChild(tip)
+
+          app.replaceChildren(box)
+        }
+
+        window.addEventListener('error', function (e) {
+          show('页面启动失败', (e && e.message) || '脚本错误')
+        })
+        window.addEventListener('unhandledrejection', function (e) {
+          var reason = e && e.reason
+          show('页面启动失败', (reason && reason.message) || String(reason || '未知错误'))
+        })
+        // 既没报错也没渲染：多半是模块没加载出来（例如依赖缓存过期）
+        setTimeout(function () {
+          show('页面没有启动', '入口脚本在 8 秒内没有完成渲染。')
+        }, 8000)
+      })()
+    </script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
