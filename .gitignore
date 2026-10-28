@@ -34,3 +34,6 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Claude Code 本地设置（含本机绝对路径），不发布
+.claude/settings.local.json
